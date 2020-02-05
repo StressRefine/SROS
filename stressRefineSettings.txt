@@ -1,0 +1,25 @@
+stress_conversion conversion_factor conversion_string 
+	(conversion of stress units from Pa to user units)
+length_conversion conversion_factor conversion_string 
+	(conversion of length units from m to user units)
+outputF06 if this line is present, ascii stress results will be output in a nastran f06 file
+needSoftSprings if this line is present, model is insufficiently constrained against
+	rigid body motion and needs soft springs for stabilization
+PMAX integer_value 
+	max polynomial order to use in solution (default 8, max allowable 8, min allowable 2)
+MAXITERATIONS integer_value
+	maximum adaptive loop iterations (default 3, max allowable 10, min allowable 2)
+uniformP if this line is present, the p order of all elements in the model
+	is increased uniformly
+ERRORTOLdouble_value
+	Error tolerance for p-adaptivity (default 5%, min allowable 1%, max allowable 33%)
+NOSACRIFICIAL if this line is present, identification and isolation of sacrificial elements
+	at singularities will not be performed.
+ALLCONSTRAINTSPENALTY if this line is present, all constraints will be processed via penalty method
+	(default is only to process constraints in curvilinear coordinates on curved faces via
+	penalty)
+econSolve if this line is present, economy settings for adaptive solution are used
+	as explained in the user's guide
+
+
+
