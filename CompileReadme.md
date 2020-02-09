@@ -14,9 +14,16 @@ StressRefine creates these automatically, but it does require 3 setup calls:
 	End loop
 In CreateElem, nnodes is the number of corner and midnodes in the element, e,g, 10 for a quadratic tet, nodes is the vector of node numbers for the element (corners first followed by midedges), and "mat" contains the element material properties, described below. Also the element numbering convention for stressrefine is shown below.
 
- 4. call model.FillGlobalFaces() faces are automatically allocated and created, with global node order assigned for continuity.
+3. call model.FillGlobalFaces() faces are automatically allocated and created, with global node order assigned for continuity.
+
+Henceforth you can calculate element stiffnesses the same as for an isoparametric element, except the isoparametric shape functions are only used for mapping (e.g. calculating Jacobian). For displacement basis functions, the functions in the library are used:
+model.basis.ElementBasisFuncs(double r, double s, double t, SRelement* elem, double* basisvec, double* dbasisdr, double* dbasisds, double* dbasisdt, SRBasisCallType calltype = both)
+The return value is total number of functions for the element, and this outputs the basis functions in basisvec and their derivatives in dbasisdr, dbasisds, dbasisdt. implementation is in basis.cpp.
+## Material Properties
+
+
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MTI1MTcyNzAsLTc5ODIxNjg5NV19
+eyJoaXN0b3J5IjpbOTk2Mzc5MTIzLC03OTgyMTY4OTVdfQ==
 -->
