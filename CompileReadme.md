@@ -20,10 +20,21 @@ Henceforth you can calculate element stiffnesses the same as for an isoparametri
 model.basis.ElementBasisFuncs(double r, double s, double t, SRelement* elem, double* basisvec, double* dbasisdr, double* dbasisds, double* dbasisdt, SRBasisCallType calltype = both)
 The return value is total number of functions for the element, and this outputs the basis functions in basisvec and their derivatives in dbasisdr, dbasisds, dbasisdt. implementation is in basis.cpp.
 ## Material Properties
+<![endif]-->
 
+These are stored in class SRMaterial, see material.h: Isotropic materials have E, nu, rho, tref, alphax, alphay, alphaz, allowableStress. AllowableStress is optional.
+
+Othotropic materials have struct cij, see material.h, while general anisotopic materials have class SrgenAnisoCij which contains a 6x6 stiffness matrix, which must be symmetric.
+
+For all materials, call assignTempRho to set reference temperature, coefficients of thermal expansion, and density. If the material is isotropic, only alphax is used, alphay and alphaz can be set to the same as alphax or 0. assignOrtho(SRcij& cij);
+
+For isotropic materials call assignIso(E,nu). For orthotropic, call assignOrtho(cij) . and for general orthotropic call assignGenAniso(SRgenAnisoCij& gcij). only the elements either above or below the diagonal need be specificied, it will be made symmetric.
+
+## Element Node Numbering
+The stressRefine element local node numbering convention is shown below for tets, wedges, and bricks. The quadratic midnodes are shown with a box around them, next to the edge they are in the middle of.
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTk2Mzc5MTIzLC03OTgyMTY4OTVdfQ==
+eyJoaXN0b3J5IjpbLTEyMTg0NTYwMjcsLTc5ODIxNjg5NV19
 -->
